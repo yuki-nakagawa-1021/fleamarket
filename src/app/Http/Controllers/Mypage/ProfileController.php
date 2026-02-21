@@ -9,6 +9,6 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        return view('mypage.index');
+        return view('mypage.profile');
     }
 }
