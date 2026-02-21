@@ -14,7 +14,10 @@ class AddProfileColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('postal_code', 8)->nullable();
+            $table->string('address')->nullable();
+            $table->string('building')->nullable();
+            $table->string('profile_image_path')->nullable();
         });
     }
 
@@ -26,7 +29,7 @@ class AddProfileColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn(['postal_code','address','building','profile_image_path']);
         });
     }
 }
