@@ -14,5 +14,8 @@ use App\Http\Controllers\Mypage\ProfileController;
 |
 */
 
-Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('mypage.profile.edit');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage', [ProfileController::class, 'index']);
+    Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+});
 

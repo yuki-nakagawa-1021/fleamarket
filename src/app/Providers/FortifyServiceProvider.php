@@ -16,7 +16,8 @@ use App\Actions\Fortify\ValidateLoginRequest;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
-
+use App\Http\Responses\RegisterResponse;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -58,5 +59,7 @@ class FortifyServiceProvider extends ServiceProvider
                 PrepareAuthenticatedSession::class,
             ]);
         });
+
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
     }
 }
