@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Mypage\ProfileController;
 
 /*
@@ -13,6 +14,7 @@ use App\Http\Controllers\Mypage\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/search', [SearchController::class, 'search']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [ProfileController::class, 'index']);
