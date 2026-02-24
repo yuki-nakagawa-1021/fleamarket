@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -13,15 +14,21 @@ class ProfileController extends Controller
         return view('mypage.profile', compact('user'));
     }
 
-    public function update(UpdateProfileImageRequest $request)
+    public function update(ProfileRequest $request)
     {
         $user = Auth::user();
 
-        $path = $request->file('profile_image')->store('profile_images', 'public');
+        $form = $request->all();
 
-        $user->profile_image_path = $path;
-        $user->save();
+        if ($request->hasFile('profile_image')) {
+            $form['profile_image_path'] = $request->file('profile_image')->store('profile_images', 'public');
+        }
 
-        return redirect('/mypage/profile');
+        unset($form['_token']);
+        unset($form['profile_image']);
+
+        $user->update($form);
+
+        return redirect('/mypage');
     }
 }
