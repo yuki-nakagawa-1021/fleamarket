@@ -10,6 +10,32 @@
     font-weight: 700;
 }
 
+.profile-image {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-image__img,
+.profile-image__placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    background: rgb(210, 210, 211);
+}
+
+.profile-image__input {
+    display: none;
+}
+
+.profile-image__button {
+    color: #ed5a15;
+    border: 2px solid #ed5a15;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
 .form {
     margin: 0 auto;
     width: 50%;
@@ -34,7 +60,6 @@
     height: 96px;
     border-radius: 50%;
     object-fit: cover;
-    /* はみ出す部分をトリミングして綺麗に */
     border: 1px solid #ddd;
 }
 

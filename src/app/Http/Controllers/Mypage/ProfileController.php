@@ -3,18 +3,25 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
-        return view('mypage.index');
-    }
-
     public function edit()
     {
-        return view('mypage.profile');
+        $user = Auth::user();
+        return view('mypage.profile', compact('user'));
     }
 
+    public function update(UpdateProfileImageRequest $request)
+    {
+        $user = Auth::user();
+
+        $path = $request->file('profile_image')->store('profile_images', 'public');
+
+        $user->profile_image_path = $path;
+        $user->save();
+
+        return redirect('/mypage/profile');
+    }
 }

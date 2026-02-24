@@ -17,7 +17,7 @@ use App\Http\Controllers\Mypage\ProfileController;
 Route::get('/search', [SearchController::class, 'search']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/mypage', [ProfileController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+    Route::post('/mypage/profile', [ProfileController::class, 'update']);
 });
 
