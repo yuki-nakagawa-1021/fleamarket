@@ -23,7 +23,7 @@
                 <nav>
                     <ul class="header-nav">
                         <li class="header-nav__item">
-                            <form class="form" action="/logout" method="POST">
+                            <form class="header-nav__form" action="/logout" method="POST">
                                 @csrf
                                 <button class="header-nav__button">ログアウト</button>
                             </form>

@@ -9,24 +9,26 @@
     <div class="mypage-profile__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
+    <form class="form" action="/mypage/profile" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form__group">
-            <div class="profile-image">
-                <div class="profile-image__preview">
-                @if ($user->profile_image_path)
-                    <img class="profile-image__img" src="{{ Storage::url($user->profile_image_path) }}" alt="プロフィール画像">
-                @else
-                    <div class="profile-image__placeholder"></div>
-                @endif
+            <div class="form__group-content">
+                <div class="profile-image">
+                    <div class="profile-image__preview">
+                    @if ($user->profile_image_path)
+                        <img class="profile-image__img" src="{{ Storage::url($user->profile_image_path) }}" alt="プロフィール画像">
+                    @else
+                        <div class="profile-image__placeholder"></div>
+                    @endif
+                    </div>
+                    <input  id="profile_image" class="profile-image__input" type="file" name="profile_image" accept="image/jpeg,image/png">
+                    <label class="profile-image__button" for="profile_image">
+                        画像を選択する
+                    </label>
+                    @error('profile_image')
+                        {{ $message }}
+                    @enderror
                 </div>
-                <input  id="profile_image" class="profile-image__input" type="file" name="profile_image" accept="image/jpeg,image/png">
-                <label class="profile-image__button" for="profile_image">
-                    画像を選択する
-                </label>
-                @error('profile_image')
-                    {{ $message }}
-                @enderror
             </div>
         </div>
     </form>
