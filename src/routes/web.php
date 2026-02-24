@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\Mypage\ProfileController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\Mypage\ProfileController;
 Route::get('/search', [SearchController::class, 'search']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage', [MypageController::class, 'index']);
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::post('/mypage/profile', [ProfileController::class, 'update']);
 });
