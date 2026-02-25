@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [ItemController::class, 'index']);
 Route::get('/search', [SearchController::class, 'search']);
 
 Route::middleware(['auth'])->group(function () {

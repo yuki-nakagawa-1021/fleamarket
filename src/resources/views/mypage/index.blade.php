@@ -4,6 +4,31 @@
 <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
+@section('header')
+<form class="search-form" action="/search" method="GET">
+    @csrf
+    <div class="search-form__item">
+        <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ old('keyword') }}">
+    </div>
+</form>
+<nav>
+    <ul class="header-nav">
+        <li class="header-nav__item">
+            <form class="header-nav__form" action="/logout" method="POST">
+                @csrf
+                <button class="header-nav__button">ログアウト</button>
+            </form>
+        </li>
+        <li class="header-nav__item">
+            <a class="header-nav__link" href="/mypage">マイページ</a>
+        </li>
+        <li class="header-nav__item">
+            <a class="header-nav__sell" href="/sell">出品</a>
+        </li>
+    </ul>
+</nav>
+@endsection
+
 @section('content')
 <div class="mypage__content">
     <div class="mypage__profile">
@@ -22,8 +47,8 @@
         </div>
     </div>
     <div class="mypage-products-tabs">
-        <h3 class="mypage-products-tabs__heading">出品した商品</h3>
-        <h3 class="mypage-products-tabs__heading">購入した商品</h3>
+        <span class="mypage-products-tabs__heading">出品した商品</span>
+        <span class="mypage-products-tabs__heading">購入した商品</span>
     </div>
     <div class="mypage-products">
         <div class="mypage-products__list">

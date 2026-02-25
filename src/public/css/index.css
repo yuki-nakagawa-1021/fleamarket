@@ -1,0 +1,17 @@
+.item-tabs {
+    display: flex;
+    gap: 40px;
+    margin: 50px 0px 10px 100px;
+    border-bottom: 1px solid #000;
+}
+
+.item-tabs__heading {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.item-list {
+    flex: 1;
+    min-width: 0;
+}
