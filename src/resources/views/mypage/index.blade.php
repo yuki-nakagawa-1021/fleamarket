@@ -52,14 +52,14 @@
     </div>
     <div class="mypage-products">
         <div class="mypage-products__list">
-            @foreach ($sellingItems as $item)
+            @foreach ($Items as $item)
+            {{ dd($item->image_path, Storage::url($item->image_path)) }}
                 <div class="mypage-products__card">
                     <img class="mypage-products__img" src="{{ Storage::url($item->image_path) }}" alt="{{ $item->name }}">
                     <p class="mypage-products__name">{{ $item->name }}</p>
                 </div>
             @endforeach
         </div>
-    </div>
     <div class="mypage-products">
         <div class="mypage-products__list">
             @foreach ($purchasedOrders as $order)

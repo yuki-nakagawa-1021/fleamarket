@@ -12,13 +12,7 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Item::query()->with('order');
-
-        if (auth()->check()) {
-            $query->where('user_id', '!=', auth()->id());
-        }
-
-        $items = $query->get();
+        $items = Item::query()->with('order')->get();
 
         $mylistItems = collect();
 
@@ -45,12 +39,7 @@ class ItemController extends Controller
 
         $item->categories()->attach($request->categories);
 
-        return redirect()->route('items.show', $item);
-    }
-
-    public function show(Item $item)
-    {
-        return view('items.show', compact('item'));
+        return redirect("/");
     }
 
     public function updateImage(Request $request, Item $item)
@@ -65,6 +54,6 @@ class ItemController extends Controller
 
         $item->categories()->attach($request->categories);
 
-        return redirect()->route('items.show', $item);
+        return redirect("/items/{$item->id}");
     }
 }
