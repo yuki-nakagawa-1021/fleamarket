@@ -52,8 +52,7 @@
     </div>
     <div class="mypage-products">
         <div class="mypage-products__list">
-            @foreach ($Items as $item)
-            {{ dd($item->image_path, Storage::url($item->image_path)) }}
+            @foreach ($sellingItems as $item)
                 <div class="mypage-products__card">
                     <img class="mypage-products__img" src="{{ Storage::url($item->image_path) }}" alt="{{ $item->name }}">
                     <p class="mypage-products__name">{{ $item->name }}</p>
