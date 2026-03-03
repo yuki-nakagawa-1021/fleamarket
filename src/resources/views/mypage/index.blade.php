@@ -54,17 +54,18 @@
         <div class="mypage-products__list">
             @foreach ($sellingItems as $item)
                 <div class="mypage-products__card">
-                    <img class="mypage-products__img" src="{{ Storage::url($item->image_path) }}" alt="{{ $item->name }}">
+                    <img class="mypage-products__img" src="{{ $item->image_url }}" alt="{{ $item->name }}">
                     <p class="mypage-products__name">{{ $item->name }}</p>
                 </div>
             @endforeach
         </div>
+    </div>
     <div class="mypage-products">
         <div class="mypage-products__list">
             @foreach ($purchasedOrders as $order)
                 @if ($order->item)
                     <div class="mypage-products__card">
-                        <img class="mypage-products__img" src="{{ Storage::url($order->item->image_path) }}" alt="{{ $order->item->name }}">
+                        <img class="mypage-products__img" src="{{ $item->image_url }}" alt="{{ $item->name }}">
                         <p class="mypage-products__name">{{ $order->item->name }}</p>
                     </div>
                 @endif

@@ -38,7 +38,7 @@
     <div class="item-list">
         @foreach ($items as $item)
         <div class="item-card">
-            <img class="item-card__img" src="{{ $item->image_path }}" alt="{{ $item->name }}">
+            <img class="item-card__img" src="{{ $item->image_url }}" alt="{{ $item->name }}">
             <p class="item-card__name">{{ $item->name }}</p>
             @if ($item->order)
                 <span class="sold-label">SOLD</span>

@@ -18,6 +18,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
+        $oldPath = $user->profile_image_path;
+
         $form = $request->all();
 
         if ($request->hasFile('profile_image')) {

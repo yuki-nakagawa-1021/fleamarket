@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Item extends Model
 {
@@ -52,4 +54,17 @@ class Item extends Model
         return $query;
     }
 
+    public function getImageUrlAttribute()
+    {
+        $path = $this->image_path;
+
+        if (!$path) return '';
+
+        if (Str::startsWith($path, ['http://', 'https://']))
+        {
+            return $path;
+        }
+
+        return Storage::disk('public')->url($path);
+    }
 }

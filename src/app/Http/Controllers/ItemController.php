@@ -45,14 +45,17 @@ class ItemController extends Controller
     public function updateImage(Request $request, Item $item)
     {
         $data = $request->only(['name', 'brand_name', 'description', 'price', 'condition']);
-        $data['user_id'] = auth()->id();
+
+        if ($item->image_path) {
+            Storage::disk('public')->delete($item->image_path);
+        }
 
         $path = $request->file('image')->store('items', 'public');
         $data['image_path'] = $path;
 
-        $item = Item::create($data);
+        $item->update($data);
 
-        $item->categories()->attach($request->categories);
+        $item->categories()->sync($request->categories ?? []);
 
         return redirect("/items/{$item->id}");
     }
