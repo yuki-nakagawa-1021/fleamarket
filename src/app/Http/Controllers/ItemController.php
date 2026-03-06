@@ -59,4 +59,11 @@ class ItemController extends Controller
 
         return redirect("/items/{$item->id}");
     }
+
+    public function show($item_id)
+    {
+        $item = Item::find($item_id);
+
+        return view('items.show', compact('item'));
+    }
 }

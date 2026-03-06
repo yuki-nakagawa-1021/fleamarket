@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/show.css') }}">
 @endsection
 
 @section('header')
@@ -30,23 +30,5 @@
 @endsection
 
 @section('content')
-<div class="item-page">
-    <div class="item-tabs">
-        <span class="item-tabs__heading">おすすめ</span>
-        <span class="item-tabs__heading">マイリスト</span>
-    </div>
-    <div class="item-list">
-        @foreach ($items as $item)
-        <div class="item-card">
-            <a href="/item/{{ $item->id }}">
-                <img class="item-card__img" src="{{ $item->image_path }}" alt="{{ $item->name }}">
-            </a>
-            <p class="item-card__name">{{ $item->name }}</p>
-            @if ($item->order)
-                <span class="sold-label">SOLD</span>
-            @endif
-        </div>
-        @endforeach
-    </div>
-</div>
+    
 @endsection

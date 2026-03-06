@@ -26,5 +26,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell', [ItemController::class, 'store']);
     Route::post('/items/{item}/image', [ItemController::class, 'updateImage']);
+    Route::get('/item/{item_id}', [ItemController::class, 'show']);
 });
 
