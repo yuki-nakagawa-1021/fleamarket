@@ -1,0 +1,143 @@
+.item-detail {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 50px 50px;
+    display: flex;
+}
+
+.item-card {
+    margin: 0 auto;
+    width: 50%;
+    min-width: 320px;
+}
+
+.item-card__img {
+    margin: 0;
+    width: 80%;
+    height: 80%;
+    display: block;
+    object-fit: contain;
+}
+
+
+.item-detail__inner {
+    margin: 0 auto;
+    padding: 10px;
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-detail__name {
+    font-size: 24px;
+    margin: 0;
+}
+
+.item-detail__brand {
+    margin: 0;
+    font-size: 14px;
+}
+
+.item-detail__price {
+    margin: 0;
+    font-size: 22px;
+}
+
+.item-detail__price-tax {
+    margin-left: 6px;
+}
+
+.item-detail__purchase-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: 700;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    background: #ed5a15;
+}
+
+.item-detail__description,
+.item-detail__info,
+.item-detail__comments {
+    margin-top: 28px;
+    width: 100%;
+}
+
+.item-detail__heading {
+    font-weight: 700;
+    padding-bottom: 8px;
+}
+
+.item-detail__body {
+    padding-top: 10px;
+}
+
+.item-detail__text {
+    margin: 0;
+    font-size: 14px;
+}
+
+.item-info__row {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+}
+
+.item-info__label {
+    width: 90px;
+    font-size: 13px;
+    color: #666;
+}
+
+.item-comments {
+    margin-top: 10px;
+}
+
+.item-comments__subheading {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.item-comments__field {
+    margin-bottom: 12px;
+}
+
+.item-comments__textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 110px;
+}
+
+.item-comments__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.item-comments__submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: 700;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    background: #ed5a15;
+}

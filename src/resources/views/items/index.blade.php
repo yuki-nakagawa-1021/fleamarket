@@ -39,7 +39,7 @@
         @foreach ($items as $item)
         <div class="item-card">
             <a href="/item/{{ $item->id }}">
-                <img class="item-card__img" src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                <img class="item-card__img" src="{{ $item['image_path'] }}" alt="{{ $item->name }}">
             </a>
             <p class="item-card__name">{{ $item->name }}</p>
             @if ($item->order)
