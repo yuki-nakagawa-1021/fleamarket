@@ -5,6 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sell', [ItemController::class, 'store']);
     Route::post('/items/{item}/image', [ItemController::class, 'updateImage']);
     Route::get('/item/{item_id}', [ItemController::class, 'show']);
+    Route::get('/item/like/{item_id}', [LikeController::class, 'like']);
+    Route::get('/item/unlike/{item_id}', [LikeController::class, 'unlike']);
+
 });
 

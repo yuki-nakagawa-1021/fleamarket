@@ -62,8 +62,14 @@ class ItemController extends Controller
 
     public function show($item_id)
     {
-        $item = Item::find($item_id);
+        $item = Item::with('categories')
+            ->withCount(['likes', 'comments'])
+            ->find($item_id);
 
-        return view('items.show', compact('item'));
+        $liked = auth()->check()
+            ? $item->likes()->where('user_id', auth()->id())->exists()
+            : false;
+
+        return view('items.show', compact('item', 'liked'));
     }
 }

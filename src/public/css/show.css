@@ -29,13 +29,13 @@
 }
 
 .item-detail__name {
-    font-size: 24px;
+    font-size: 30px;
     margin: 0;
 }
 
 .item-detail__brand {
-    margin: 0;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .item-detail__price {
@@ -45,6 +45,31 @@
 
 .item-detail__price-tax {
     margin-left: 6px;
+}
+
+.item-meta {
+    margin: 10px;
+    display: flex;
+
+}
+
+.item-meta__like {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.item-meta__icon {
+    margin: 0 10px;
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.item-meta__count {
+    font-size: 10px;
+    font-weight: 700;
 }
 
 .item-detail__purchase-button {
@@ -92,7 +117,19 @@
 .item-info__label {
     width: 90px;
     font-size: 13px;
-    color: #666;
+}
+
+.item-info__value--category {
+    margin: 0;
+    padding: 0 10px;
+    border: none;
+    border-radius: 20px;
+    background: #cfcbcb;
+}
+
+.item-info__value--condition {
+    margin: 0;
+    padding: 0 10px;
 }
 
 .item-comments {

@@ -32,63 +32,97 @@
 @section('content')
 <div class="item-detail">
     <div class="item-card">
-        <img class="item-card__img" src="{{ $item['image_path'] }}" alt="{{ $item->name }}">
+        <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
     </div>
     <div class="item-detail__inner">
         <div class="item-detail__header">
             <div class="item-detail__title">
-                <h2 class="item-detail__name">{{-- $item['name'] --}}</h2>
-                <p class="item-detail__brand">{{-- $item['brand_name'] --}}</p>
+                <h2 class="item-detail__name">{{ $item['name'] }}</h2>
+                <p class="item-detail__brand">{{ $item['brand_name'] }}</p>
             </div>
             <div class="item-detail__buy">
                 <p class="item-detail__price">
-                    ¥{{-- number_format($item['price']) --}}
+                    <span class="">¥</span>
+                    {{ number_format($item['price']) }}
                     <span class="item-detail__price-tax">（税込）</span>
                 </p>
-                <div class="item-detail__purchase">
-                    <a class="item-detail__purchase-button" href="/purchase/{{ $item['id'] }}">
-                        購入手続きへ
-                    </a>
+            </div>
+            <div class="item-meta">
+                <div>
+                @auth
+                    @if($item->is_liked_by_auth_user())
+                        <a class="item-meta__like" href="/item/unlike/{{ $item['id'] }}">
+                            <img class="item-meta__icon" src="{{ asset('img/ハートロゴ_ピンク.png') }}" alt="いいね済み">
+                            <span class="item-meta__count">{{ $item['likes']->count() }}</span>
+                        </a>
+                    @else
+                        <a class="item-meta__like" href="/item/like/{{ $item->id }}">
+                            <img class="item-meta__icon" src="{{ asset('img/ハートロゴ_デフォルト.png') }}" alt="いいね">
+                            <span class="item-meta__count">{{ $item['likes']->count() }}</span>
+                        </a>
+                    @endif
+                @else
+                    <div class="item-meta__like is-disabled">
+                        <img class="item-meta__icon" src="{{ asset('img/heart_off.png') }}" alt="いいね">
+                        <span class="item-meta__count">{{ $item['likes']->count() }}</span>
+                    </div>
+                @endauth
                 </div>
+                <div>
+                    <img class="item-meta__icon" src="{{ asset('img/ふきだしロゴ.png') }}" alt="コメント">
+                </div>
+            </div>
+            <div class="item-detail__purchase">
+                <a class="item-detail__purchase-button" href="/purchase/{{ $item['id'] }}">
+                    購入手続きへ
+                </a>
             </div>
         </div>
         <div class="item-detail__description">
             <h3 class="item-detail__heading">商品説明</h3>
             <div class="item-detail__body">
-                <p class="item-detail__text">
-
-                </p>
+                <p class="item-detail__text">{{ $item['description'] }}</p>
             </div>
         </div>
         <div class="item-detail__info">
-            <h3 class="item-detail__heading">商品の情報</h3>
-            <div class="item-detail__body">
-                <div class="item-info">
-                    <div class="item-info__row">
-                        <span class="item-info__label">ブランド</span>
-                    </div>
-                    {{-- 必要なら後で追加：状態、カテゴリなど --}}
-                    {{-- <div class="item-info__row">...</div> --}}
+            <h2 class="item-detail__heading">商品の情報</h2>
+            <div class="item-info">
+                <div class="item-info__row">
+                    <span class="item-info__label">カテゴリー</span>
+                    <span class="item-info__value--category">{{ $item['categories']->first()['name'] ?? '' }}</span>
+                </div>
+                <div class="item-info__row">
+                    <span class="item-info__label">商品の状態</span>
+                    <span class="item-info__value--condition">
+                        @if ($item['condition'] == 1)
+                            良好
+                        @elseif ($item['condition'] == 2)
+                            目立った傷や汚れなし
+                        @elseif ($item['condition'] == 3)
+                            やや傷や汚れあり
+                        @else
+                            状態が悪い
+                        @endif
+                    </span>
                 </div>
             </div>
         </div>
-            <div class="item-detail__comments">
-                <h2 class="item-detail__heading">コメント</h2>
-                <div class="item-comments">
-                    <div class="item-comments__form-area">
-                        <h3 class="item-comments__subheading">商品へのコメント</h3>
-                        <form class="item-comments__form" action="/item/{{ $item['id'] }}/comments" method="POST">
-                            @csrf
-                            <div class="item-comments__field">
-                                <textarea class="item-comments__textarea" name="comment" rows="5" placeholder="コメントを入力してください">{{ old('comment') }}</textarea>
-                            </div>
-                            <div class="item-comments__actions">
-                                <button class="item-comments__submit" type="submit">
-                                    コメントを送信する
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="item-detail__comments">
+            <h2 class="item-detail__heading">コメント</h2>
+            <div class="item-comments">
+                <div class="item-comments__form-area">
+                    <h3 class="item-comments__subheading">商品へのコメント</h3>
+                    <form class="item-comments__form" action="/item/{{ $item['id'] }}/comments" method="POST">
+                        @csrf
+                        <div class="item-comments__field">
+                            <textarea class="item-comments__textarea" name="comment" rows="5" placeholder="コメントを入力してください">{{ old('comment') }}</textarea>
+                        </div>
+                        <div class="item-comments__actions">
+                            <button class="item-comments__submit" type="submit">
+                                コメントを送信する
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

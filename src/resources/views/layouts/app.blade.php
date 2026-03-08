@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img class="header__logo" src="{{ asset('img/coachtech.png') }}" alt="coachtechロゴ">
+            <img class="header__logo" src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}" alt="coachtechロゴ">
             @yield('header')
         </div>
     </header>

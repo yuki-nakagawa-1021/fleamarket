@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
+use App\Models\Comment;
 
 class Item extends Model
 {
@@ -66,5 +69,13 @@ class Item extends Model
         }
 
         return Storage::disk('public')->url($path);
+    }
+    public function is_liked_by_auth_user()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+
+        return $this->likes()->where('user_id', Auth::id())->exists();
     }
 }
