@@ -68,8 +68,9 @@
                     </div>
                 @endauth
                 </div>
-                <div>
-                    <img class="item-meta__icon" src="{{ asset('img/ふきだしロゴ.png') }}" alt="コメント">
+                <div class="item-meta__comment">
+                        <img class="item-meta__icon" src="{{ asset('img/ふきだしロゴ.png') }}" alt="コメント">
+                        <span class="item-meta__count">{{ $item['comments_count'] }}</span>
                 </div>
             </div>
             <div class="item-detail__purchase">
@@ -108,11 +109,27 @@
             </div>
         </div>
         <div class="item-detail__comments">
-            <h2 class="item-detail__heading">コメント</h2>
+            <h2 class="item-detail__heading">コメント （{{ $item->comments_count }}）</h2>
             <div class="item-comments">
+                <div class="item-comments__list">
+                    @foreach ($item->comments as $comment)
+                        <div class="item-comments__item">
+                            <div class="item-comments__avatar">
+                                @if (!empty($comment->user->profile_image_path))
+                                    <img class="item-comments__avatar-img" src="{{ Storage::url($comment->user->profile_image_path) }}" alt="ユーザーアイコン">
+                                @else
+                                    <div class="item-comments__avatar-placeholder"></div>
+                                @endif
+                            </div>
+                            <div class="item-comments__content">
+                                <p class="item-comments__text">{{ $comment->body }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
                 <div class="item-comments__form-area">
                     <h3 class="item-comments__subheading">商品へのコメント</h3>
-                    <form class="item-comments__form" action="/item/{{ $item['id'] }}/comments" method="POST">
+                    <form class="item-comments__form" action="/item/comments/{{ $item['id'] }}" method="POST">
                         @csrf
                         <div class="item-comments__field">
                             <textarea class="item-comments__textarea" name="comment" rows="5" placeholder="コメントを入力してください">{{ old('comment') }}</textarea>

@@ -57,14 +57,14 @@ class ItemController extends Controller
 
         $item->categories()->sync($request->categories ?? []);
 
-        return redirect("/items/{$item->id}");
+        return redirect("/item/{$item->id}");
     }
 
     public function show($item_id)
     {
-        $item = Item::with('categories')
+        $item = Item::with(['categories', 'comments.user'])
             ->withCount(['likes', 'comments'])
-            ->find($item_id);
+            ->findOrFail($item_id);
 
         $liked = auth()->check()
             ? $item->likes()->where('user_id', auth()->id())->exists()

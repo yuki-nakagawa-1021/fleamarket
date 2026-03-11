@@ -6,6 +6,7 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/item/{item_id}', [ItemController::class, 'show']);
     Route::get('/item/like/{item_id}', [LikeController::class, 'like']);
     Route::get('/item/unlike/{item_id}', [LikeController::class, 'unlike']);
-
+    Route::post('/item/comments/{item_id}', [CommentController::class, 'store']);
 });
 
