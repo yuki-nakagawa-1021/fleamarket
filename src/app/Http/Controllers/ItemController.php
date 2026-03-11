@@ -12,11 +12,20 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        $tab = $request->query('tab', 'recommend');
+
         $items = Item::query()->with('order')->get();
 
         $mylistItems = collect();
 
-        return view('items.index', compact('items', 'mylistItems'));
+        if (auth()->check()) {
+            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($q) 
+            {
+                $q->where('user_id', auth()->id());
+            })->get();
+        }
+
+        return view('items.index', compact('items', 'mylistItems', 'tab'));
     }
 
     public function create()

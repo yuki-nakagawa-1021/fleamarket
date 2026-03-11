@@ -32,21 +32,35 @@
 @section('content')
 <div class="item-page">
     <div class="item-tabs">
-        <span class="item-tabs__heading">おすすめ</span>
-        <span class="item-tabs__heading">マイリスト</span>
+        <a class="item-tabs__heading {{ $tab === 'recommend' ? 'is-active' : '' }}" href="/">おすすめ</a>
+        <a class="item-tabs__heading {{ $tab === 'mylist' ? 'is-active' : '' }}" href="/?tab=mylist">マイリスト</a>
     </div>
     <div class="item-list">
-        @foreach ($items as $item)
-        <div class="item-card">
-            <a href="/item/{{ $item->id }}">
-                <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
-            </a>
-            <p class="item-card__name">{{ $item->name }}</p>
-            @if ($item->order)
-                <span class="sold-label">SOLD</span>
-            @endif
-        </div>
+    @if ($tab === 'mylist')
+        @foreach ($mylistItems as $item)
+            <div class="item-card">
+                <a href="/item/{{ $item['id'] }}">
+                    <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                </a>
+                <p class="item-card__name">{{ $item['name'] }}</p>
+                @if ($item->order)
+                    <span class="sold-label">SOLD</span>
+                @endif
+            </div>
         @endforeach
-    </div>
+        @else
+        @foreach ($items as $item)
+            <div class="item-card">
+                <a href="/item/{{ $item['id'] }}">
+                    <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                </a>
+                <p class="item-card__name">{{ $item['name'] }}</p>
+                @if ($item->order)
+                    <span class="sold-label">SOLD</span>
+                @endif
+            </div>
+        @endforeach
+    @endif
+</div>
 </div>
 @endsection

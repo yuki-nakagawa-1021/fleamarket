@@ -14,7 +14,15 @@
 .item-tabs__heading {
     margin: 0;
     font-size: 18px;
-    font-weight: 600;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 8px;
+    border-bottom: 2px solid transparent;
+    font-weight: 700;
+}
+
+.item-tabs__heading.is-active {
+    color: #ed5a15;
 }
 
 .item-list {
