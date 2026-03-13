@@ -9,7 +9,7 @@ class LikeController extends Controller
 {
     public function like($item_id)
     {
-        Like::Create([
+        Like::firstOrCreate([
             'item_id' => $item_id,
             'user_id' => Auth::id(),
         ]);

@@ -70,7 +70,7 @@ class Item extends Model
 
         return Storage::disk('public')->url($path);
     }
-    public function is_liked_by_auth_user()
+    public function is_liked_by_user()
     {
         if (!Auth::check()) {
             return false;

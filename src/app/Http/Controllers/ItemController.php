@@ -14,12 +14,16 @@ class ItemController extends Controller
     {
         $tab = $request->query('tab', 'recommend');
 
-        $items = Item::query()->with('order')->get();
-
+        $items = Item::query()
+    ->with('order')
+    ->when(auth()->check(), function ($query) {
+        $query->where('user_id', '!=', auth()->id());
+    })
+    ->get();
         $mylistItems = collect();
 
         if (auth()->check()) {
-            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($q) 
+            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($q)
             {
                 $q->where('user_id', auth()->id());
             })->get();
