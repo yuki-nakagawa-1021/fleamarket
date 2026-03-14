@@ -1,0 +1,131 @@
+.purchase-page {
+    margin: 0 auto;
+    padding: 60px 0;
+    max-width: 1230px;
+}
+
+.purchase-form {
+    width: 100%;
+}
+
+.purchase-page__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+.purchase-content {
+    width: 60%;
+}
+
+.purchase-summary {
+    width: 35%;
+}
+
+.purchase-product {
+    display: flex;
+    gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #000;
+}
+
+.purchase-product__image {
+    width: 180px;
+}
+
+.purchase-product__img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.purchase-product__info {
+    flex: 1;
+}
+
+.purchase-product__name {
+    margin: 0 0 20px;
+    font-size: 30px;
+}
+
+.purchase-product__price {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.purchase-section {
+    padding: 30px 0;
+    border-bottom: 1px solid #000;
+}
+
+.purchase-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.purchase-section__heading {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+
+.purchase-section__body {
+    padding-left: 20px;
+}
+
+.purchase-section__select {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.purchase-section__text {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.purchase-section__link {
+    color: #0073cc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.purchase-summary__box {
+    border: 1px solid #000;
+}
+
+.purchase-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 20px;
+    border-bottom: 1px solid #000;
+}
+
+.purchase-summary__row:last-child {
+    border-bottom: none;
+}
+
+.purchase-summary__label {
+    font-size: 18px;
+}
+
+.purchase-summary__value {
+    font-size: 18px;
+}
+
+.purchase-summary__button {
+    margin-top: 30px;
+    width: 100%;
+    padding: 15px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #ed5a15;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}

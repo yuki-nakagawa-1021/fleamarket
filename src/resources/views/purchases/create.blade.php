@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/address.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
 @section('header')
@@ -30,57 +30,66 @@
 @endsection
 
 @section('content')
-<div class="item-detail">
-    <div class="item-card">
-        <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
-    </div>
-    <div class="item-detail__inner">
-        <div class="item-detail__header">
-            <div class="item-detail__title">
-                <h2 class="item-detail__name">{{ $item['name'] }}</h2>
-            </div>
-            <div class="item-detail__buy">
-                <p class="item-detail__price">
-                    <span class="">¥</span>
-                    {{ number_format($item['price']) }}
-                    <span class="item-detail__price-tax">（税込）</span>
-                </p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <h2>支払い方法</h2>
-            </div>
-            <form action="/purchase/{{ $item['id'] }}" method="POST">
-                @csrf
-                <select name="payment_method">
-                    <option value="">選択してください</option>
-                    <option value="1">コンビニ払い</option>
-                    <option value="2">カード支払い</option>
-                </select>
-                <div>
-                    <div>
-                        <h2>配送先</h2>
+<div class="purchase-page">
+    <form class="purchase-form" action="/purchase/{{ $item['id'] }}" method="POST">
+        @csrf
+
+        <div class="purchase-page__inner">
+            <div class="purchase-content">
+                <div class="purchase-product">
+                    <div class="purchase-product__image">
+                        <img class="purchase-product__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
                     </div>
-            <div>
-                <p>{{ $user['postal_code'] }}</p>
-                <p>{{ $user['address'] }}</p>
+                    <div class="purchase-product__info">
+                        <h2 class="purchase-product__name">{{ $item['name'] }}</h2>
+                        <p class="purchase-product__price">
+                            <span>¥</span>
+                            {{ number_format($item['price']) }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="purchase-section">
+                    <h3 class="purchase-section__heading">支払い方法</h3>
+                    <div class="purchase-section__body">
+                        <select class="purchase-section__select" name="payment_method">
+                            <option value="">選択してください</option>
+                            <option value="1">コンビニ払い</option>
+                            <option value="2">カード支払い</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="purchase-section">
+                    <div class="purchase-section__header">
+                        <h3 class="purchase-section__heading">配送先</h3>
+                        <a class="purchase-section__link" href="/purchase/address/{{ $item['id'] }}">変更する</a>
+                    </div>
+                    <div class="purchase-section__body">
+                        <p class="purchase-section__text">{{ $user['postal_code'] }}</p>
+                        <p class="purchase-section__text">{{ $user['address'] }}</p>
+                        @if (!empty($user['building']))
+                            <p class="purchase-section__text">{{ $user['building'] }}</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="purchase-summary">
+                <div class="purchase-summary__box">
+                    <div class="purchase-summary__row">
+                        <span class="purchase-summary__label">商品代金</span>
+                        <span class="purchase-summary__value">¥{{ number_format($item['price']) }}</span>
+                    </div>
+                    <div class="purchase-summary__row">
+                        <span class="purchase-summary__label">支払い方法</span>
+                        <span class="purchase-summary__value">選択してください</span>
+                    </div>
+                </div>
+
+                <button class="purchase-summary__button" type="submit">購入する</button>
             </div>
         </div>
-    <div>
-        <div>
-            <div class="item-card">
-                <span>商品代金</span>
-                <span class="">¥{{ number_format($item['price']) }}</span>
-            </div>
-            <div>
-                <span>支払い方法</span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    <div>
-        <button type="submit">購入する</button>
-    </div>
-</form>
+    </form>
+</div>
 @endsection
