@@ -35,4 +35,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/item/comments/{item_id}', [CommentController::class, 'store']);
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'create']);
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'store']);
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
 });

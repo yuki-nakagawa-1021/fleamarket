@@ -1,0 +1,75 @@
+.purchase-address-page {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+}
+
+.purchase-address-page__inner {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.purchase-address-page__header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.purchase-address-page__heading {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.purchase-address-form {
+    width: 100%;
+    font-weight: 700;
+}
+
+.purchase-address-form__group {
+    margin-bottom: 20px;
+}
+
+.purchase-address-form__label {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.purchase-address-form__control {
+    width: 100%;
+}
+
+.purchase-address-form__input {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.purchase-address-form__error {
+    min-height: 20px;
+    margin: 5px 0 0;
+    color: #ff0000;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.purchase-address-form__action {
+    margin-top: 40px;
+}
+
+.purchase-address-form__submit {
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: #ed5a15;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}

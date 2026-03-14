@@ -66,10 +66,10 @@
                         <a class="purchase-section__link" href="/purchase/address/{{ $item['id'] }}">変更する</a>
                     </div>
                     <div class="purchase-section__body">
-                        <p class="purchase-section__text">{{ $user['postal_code'] }}</p>
-                        <p class="purchase-section__text">{{ $user['address'] }}</p>
+                        <p class="purchase-section__text">{{ $shippingAddress['postal_code'] }}</p>
+                        <p class="purchase-section__text">{{ $shippingAddress['address'] }}</p>
                         @if (!empty($user['building']))
-                            <p class="purchase-section__text">{{ $user['building'] }}</p>
+                            <p class="purchase-section__text">{{ $shippingAddress['building'] }}</p>
                         @endif
                     </div>
                 </div>
