@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/item/like/{item_id}', [LikeController::class, 'like']);
     Route::get('/item/unlike/{item_id}', [LikeController::class, 'unlike']);
     Route::post('/item/comments/{item_id}', [CommentController::class, 'store']);
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'create']);
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store']);
 });

@@ -40,24 +40,28 @@
         @foreach ($mylistItems as $item)
             <div class="item-card">
                 <a href="/item/{{ $item['id'] }}">
-                    <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                    <div class="item-card__image-wrap">
+                        <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                        @if ($item->order)
+                            <div class="item-card__sold">SOLD</div>
+                        @endif
+                    </div>
                 </a>
                 <p class="item-card__name">{{ $item['name'] }}</p>
-                @if ($item->order)
-                    <span class="sold-label">SOLD</span>
-                @endif
             </div>
         @endforeach
-        @else
+    @else
         @foreach ($items as $item)
             <div class="item-card">
                 <a href="/item/{{ $item['id'] }}">
-                    <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                    <div class="item-card__image-wrap">
+                        <img class="item-card__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                        @if ($item->order)
+                            <div class="item-card__sold">SOLD</div>
+                        @endif
+                    </div>
                 </a>
                 <p class="item-card__name">{{ $item['name'] }}</p>
-                @if ($item->order)
-                    <span class="sold-label">SOLD</span>
-                @endif
             </div>
         @endforeach
     @endif

@@ -49,7 +49,7 @@
             </div>
             <div class="item-meta">
                 <div>
-                    @if($item->is_liked_by_auth_user())
+                    @if($item->is_liked_by_user())
                         <a class="item-meta__like" href="/item/unlike/{{ $item['id'] }}">
                             <img class="item-meta__icon" src="{{ asset('img/ハートロゴ_ピンク.png') }}" alt="いいね済み">
                             <span class="item-meta__count">{{ $item['likes']->count() }}</span>

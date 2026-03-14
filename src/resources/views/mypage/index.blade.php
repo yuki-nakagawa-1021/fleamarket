@@ -47,29 +47,32 @@
         </div>
     </div>
     <div class="mypage-products-tabs">
-        <span class="mypage-products-tabs__heading">出品した商品</span>
-        <span class="mypage-products-tabs__heading">購入した商品</span>
+        <a class="mypage-products-tabs__heading {{ $page === 'sell' ? 'is-active' : '' }}" href="/mypage?page=sell">
+            出品した商品
+        </a>
+        <a class="mypage-products-tabs__heading {{ $page === 'buy' ? 'is-active' : '' }}" href="/mypage?page=buy">
+            購入した商品
+        </a>
     </div>
     <div class="mypage-products">
         <div class="mypage-products__list">
-            @foreach ($sellingItems as $item)
-                <div class="mypage-products__card">
-                    <img class="mypage-products__img" src="{{ $item->image_url }}" alt="{{ $item->name }}">
-                    <p class="mypage-products__name">{{ $item->name }}</p>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="mypage-products">
-        <div class="mypage-products__list">
-            @foreach ($purchasedOrders as $order)
-                @if ($order->item)
+            @if ($page === 'buy')
+                @foreach ($purchasedOrders as $order)
+                    @if ($order['item'])
+                        <div class="mypage-products__card">
+                            <img class="mypage-products__img" src="{{ $order['item']['image_url'] }}" alt="{{ $order['item']['name'] }}">
+                            <p class="mypage-products__name">{{ $order['item']['name'] }}</p>
+                        </div>
+                    @endif
+                @endforeach
+            @else
+                @foreach ($sellingItems as $item)
                     <div class="mypage-products__card">
-                        <img class="mypage-products__img" src="{{ $item->image_url }}" alt="{{ $item->name }}">
-                        <p class="mypage-products__name">{{ $order->item->name }}</p>
+                        <img class="mypage-products__img" src="{{ $item['image_url'] }}" alt="{{ $item['name'] }}">
+                        <p class="mypage-products__name">{{ $item['name'] }}</p>
                     </div>
-                @endif
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
