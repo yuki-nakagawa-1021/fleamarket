@@ -76,7 +76,7 @@ return [
 
     'home' => RouteServiceProvider::HOME,
     'redirects' => ['logout' => 'login',],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
@@ -148,7 +148,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([

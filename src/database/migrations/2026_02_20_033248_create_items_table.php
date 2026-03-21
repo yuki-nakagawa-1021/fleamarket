@@ -28,7 +28,7 @@ class CreateItemsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *n
      * @return void
      */
     public function down()

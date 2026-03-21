@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -25,7 +26,7 @@ class PurchaseController extends Controller
         return view('purchases.create', compact('item', 'user', 'shippingAddress'));
     }
 
-    public function store(Request $request, $item_id)
+    public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
         $user = auth()->user();
