@@ -7,29 +7,29 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
     public function index(Request $request)
     {
         $tab = $request->query('tab', 'recommend');
+        $keyword = $request->query('keyword');
 
-        $items = Item::query()
-    ->with('order')
-    ->when(auth()->check(), function ($query) {
-        $query->where('user_id', '!=', auth()->id());
-    })
-    ->get();
+        $items = Item::query()->with('order')->keywordSearch($keyword)->when(auth()->check(), function ($query) {
+            $query->where('user_id', '!=', auth()->id());
+        })->get();
+
         $mylistItems = collect();
 
-        if (auth()->check()) {
-            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($q)
+        if (Auth::check()) {
+            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($query) 
             {
-                $q->where('user_id', auth()->id());
-            })->get();
+                $query->where('user_id', Auth::id());
+            })->keywordSearch($keyword)->get();
         }
 
-        return view('items.index', compact('items', 'mylistItems', 'tab'));
+        return view('items.index', compact('items', 'mylistItems', 'tab', 'keyword'));
     }
 
     public function create()

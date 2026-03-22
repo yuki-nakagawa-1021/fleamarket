@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/', [ItemController::class, 'index']);
-Route::get('/search', [SearchController::class, 'search']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
+
+Route::post('/webhook/stripe', [PurchaseController::class, 'webhook']);
 
 Route::middleware('auth')->group(function () {
 

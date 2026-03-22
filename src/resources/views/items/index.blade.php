@@ -5,10 +5,10 @@
 @endsection
 
 @section('header')
-<form class="search-form" action="/search" method="GET">
-    @csrf
+<form class="search-form" action="/" method="GET">
+    <input type="hidden" name="tab" value="{{ request('tab', 'recommend') }}">
     <div class="search-form__item">
-        <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ old('keyword') }}">
+        <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
     </div>
 </form>
 <nav>
@@ -32,8 +32,12 @@
 @section('content')
 <div class="item-page">
     <div class="item-tabs">
-        <a class="item-tabs__heading {{ $tab === 'recommend' ? 'is-active' : '' }}" href="/">おすすめ</a>
-        <a class="item-tabs__heading {{ $tab === 'mylist' ? 'is-active' : '' }}" href="/?tab=mylist">マイリスト</a>
+        <a class="item-tabs__heading {{ $tab === 'recommend' ? 'is-active' : '' }}" href="/?tab=recommend&keyword={{ request('keyword') }}">
+            おすすめ
+        </a>
+        <a class="item-tabs__heading {{ $tab === 'mylist' ? 'is-active' : '' }}" href="/?tab=mylist&keyword={{ request('keyword') }}">
+            マイリスト
+        </a>
     </div>
     <div class="item-list">
     @if ($tab === 'mylist')

@@ -5,10 +5,9 @@
 @endsection
 
 @section('header')
-<form class="search-form" action="/search" method="GET">
-    @csrf
+<form class="search-form" action="/" method="GET">
     <div class="search-form__item">
-        <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ old('keyword') }}">
+        <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
     </div>
 </form>
 <nav>
@@ -52,11 +51,14 @@
                 <div class="purchase-section">
                     <h3 class="purchase-section__heading">支払い方法</h3>
                     <div class="purchase-section__body">
-                        <select class="purchase-section__select" name="payment_method">
+                        <select class="purchase-section__select" name="payment_method" id="payment_method">
                             <option value="">選択してください</option>
-                            <option value="1">コンビニ払い</option>
-                            <option value="2">カード支払い</option>
+                            <option value="konbini" {{ old('payment_method') === 'konbini' ? 'selected' : '' }}>コンビニ支払い</option>
+                            <option value="card" {{ old('payment_method') === 'card' ? 'selected' : '' }}>カード支払い</option>
                         </select>
+                        @error('payment_method')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -68,7 +70,7 @@
                     <div class="purchase-section__body">
                         <p class="purchase-section__text">{{ $shippingAddress['postal_code'] }}</p>
                         <p class="purchase-section__text">{{ $shippingAddress['address'] }}</p>
-                        @if (!empty($user['building']))
+                        @if (!empty($shippingAddress['building']))
                             <p class="purchase-section__text">{{ $shippingAddress['building'] }}</p>
                         @endif
                     </div>
@@ -83,7 +85,7 @@
                     </div>
                     <div class="purchase-summary__row">
                         <span class="purchase-summary__label">支払い方法</span>
-                        <span class="purchase-summary__value">選択してください</span>
+                        <span class="purchase-summary__value" id="payment_method_display">選択してください</span>
                     </div>
                 </div>
 
@@ -92,4 +94,24 @@
         </div>
     </form>
 </div>
+
+<script>
+    const paymentMethodSelect = document.getElementById('payment_method');
+    const paymentMethodDisplay = document.getElementById('payment_method_display');
+
+    function updatePaymentMethodDisplay() {
+        const value = paymentMethodSelect.value;
+
+        if (value === 'konbini') {
+            paymentMethodDisplay.textContent = 'コンビニ支払い';
+        } else if (value === 'card') {
+            paymentMethodDisplay.textContent = 'カード支払い';
+        } else {
+            paymentMethodDisplay.textContent = '選択してください';
+        }
+    }
+
+    paymentMethodSelect.addEventListener('change', updatePaymentMethodDisplay);
+    updatePaymentMethodDisplay();
+</script>
 @endsection
