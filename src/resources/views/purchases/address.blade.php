@@ -20,17 +20,17 @@
                 <button class="header-nav__button" type="submit">ログアウト</button>
             </form>
         </li>
+        @else
+            <li class="header-nav__item">
+                <a class="header-nav__link" href="/login">ログイン</a>
+            </li>
+        @endif
         <li class="header-nav__item">
             <a class="header-nav__link" href="/mypage">マイページ</a>
         </li>
         <li class="header-nav__item">
             <a class="header-nav__sell" href="/sell">出品</a>
         </li>
-        @else
-            <li class="header-nav__item">
-                <a class="header-nav__link" href="/login">ログイン</a>
-            </li>
-        @endif
     </ul>
 </nav>
 @endsection
