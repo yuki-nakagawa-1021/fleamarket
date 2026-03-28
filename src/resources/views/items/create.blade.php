@@ -13,10 +13,11 @@
 </form>
 <nav>
     <ul class="header-nav">
+        @if (Auth::check())
         <li class="header-nav__item">
             <form class="header-nav__form" action="/logout" method="POST">
                 @csrf
-                <button class="header-nav__button">ログアウト</button>
+                <button class="header-nav__button" type="submit">ログアウト</button>
             </form>
         </li>
         <li class="header-nav__item">
@@ -25,6 +26,11 @@
         <li class="header-nav__item">
             <a class="header-nav__sell" href="/sell">出品</a>
         </li>
+        @else
+            <li class="header-nav__item">
+                <a class="header-nav__link" href="/login">ログイン</a>
+            </li>
+        @endif
     </ul>
 </nav>
 @endsection
