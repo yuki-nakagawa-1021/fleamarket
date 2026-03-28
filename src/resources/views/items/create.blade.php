@@ -48,7 +48,7 @@
             </div>
             <div class="sell-form__group-content">
                 <div class="item-image">
-                    <img class="item-image__img" src="{{ $item->image_path ? Storage::url($item->image_path) : asset('img/noimage.png') }}" alt="商品画像">
+                    <img id="itemImagePreview" class="item-image__img" src="" alt="商品画像">
                     <input id="image" class="item-image__input" type="file" name="image" accept="image/jpeg,image/png">
                     <label class="item-image__button" for="image">
                         画像を選択する
@@ -85,12 +85,11 @@
                 <label class="sell-form__label" for="condition">商品の状態</label>
             </div>
             <div class="sell-form__group-content">
-                <select class="sell-form__select" name="condition" value="{{ old('condition') }}" id="condition">
-                    <option value="">選択してください</option>
-                    <option value="1">良好</option>
-                    <option value="2">目立った傷や汚れなし</option>
-                    <option value="3">やや傷や汚れあり</option>
-                    <option value="4">状態が悪い</option>
+                <select class="sell-form__select" name="condition" id="condition">
+                    <option value="1" {{ old('condition') == '1' ? 'selected' : '' }}>良好</option>
+                    <option value="2" {{ old('condition') == '2' ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                    <option value="3" {{ old('condition') == '3' ? 'selected' : '' }}>やや傷や汚れあり</option>
+                    <option value="4" {{ old('condition') == '4' ? 'selected' : '' }}>状態が悪い</option>
                 </select>
             </div>
             <div class="form__error">
@@ -152,4 +151,25 @@
         <button class="sell-form__submit" type="submit">出品する</button>
     </form>
 </div>
+
+<script>
+const itemImageInput=document.getElementById('image');
+const itemImagePreview=document.getElementById('itemImagePreview');
+
+itemImageInput.addEventListener('change',function(event){
+    const file=event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+        itemImagePreview.src=e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
+</script>
 @endsection

@@ -17,8 +17,7 @@
     margin-bottom: 30px;
 }
 
-.profile-image__img,
-.profile-image__placeholder {
+.profile-image__img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -96,5 +95,34 @@
     color: #fff;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-image {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.profile-image__img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    display: block;
+}
+
+.profile-image__input {
+    display: none;
+}
+
+.profile-image__button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ff5a5f;
+    border-radius: 5px;
+    color: #ff5a5f;
+    background-color: #fff;
     cursor: pointer;
 }

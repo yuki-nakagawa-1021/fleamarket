@@ -23,7 +23,7 @@ class ItemController extends Controller
         $mylistItems = collect();
 
         if (Auth::check()) {
-            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($query) 
+            $mylistItems = Item::query()->with('order')->whereHas('likes', function ($query)
             {
                 $query->where('user_id', Auth::id());
             })->keywordSearch($keyword)->get();

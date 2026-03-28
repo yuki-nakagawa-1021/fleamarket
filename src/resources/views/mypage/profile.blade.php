@@ -47,17 +47,11 @@
                 <span class="form__label--item"></span>
             </div>
             <div class="form__group-content">
+                <div class="form__group-content">
                 <div class="profile-image">
-                    @if ($user->profile_image_path)
-                        <img class="profile-image__img" src="{{ Storage::url($user->profile_image_path) }}" alt="プロフィール画像">
-                    @else
-                        <div class="profile-image__placeholder"></div>
-                    @endif
-
+                    <img id="profileImagePreview" class="profile-image__img" src="{{ $user->profile_image_path ? Storage::url($user->profile_image_path) : asset('img/default-user.png') }}" alt="プロフィール画像">
                     <input id="profile_image" class="profile-image__input" type="file" name="profile_image" accept="image/jpeg,image/png">
-                    <label class="profile-image__button" for="profile_image">
-                        画像を選択する
-                    </label>
+                    <label class="profile-image__button" for="profile_image">画像を選択する</label>
                 </div>
                 <div class="form__error">
                     @error('profile_image')
@@ -131,4 +125,25 @@
         </div>
     </form>
 </div>
+
+<script>
+const profileImageInput=document.getElementById('profile_image');
+const profileImagePreview=document.getElementById('profileImagePreview');
+
+profileImageInput.addEventListener('change',function(event){
+    const file=event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+        profileImagePreview.src=e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+});
+</script>
 @endsection
