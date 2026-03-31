@@ -54,7 +54,7 @@
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
-    color: inherit;
+    color: #000;
 }
 
 .mypage-products-tabs__tab.is-active {
@@ -84,5 +84,4 @@
     margin: 0;
     padding: 10px 12px;
     font-size: 14px;
-    line-height: 1.3;
 }
