@@ -24,6 +24,15 @@
     object-fit: cover;
     border: 1px solid #ccc;
     display: block;
+    flex-shrink: 0;
+}
+
+.profile-image__placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    border: 1px solid #ccc;
 }
 
 .profile-image__input {
@@ -37,10 +46,7 @@
     border: 2px solid #ed5a15;
     box-sizing: border-box;
     border-radius: 5px;
-}
-
-.profile-image__input {
-    display: none;
+    cursor: pointer;
 }
 
 .form {
@@ -53,26 +59,12 @@
     margin-bottom: 10px;
 }
 
-.image-picker__label {
-    display: inline-block;
-    cursor: pointer;
-}
-
-.image-picker__img {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #ddd;
-}
-
 .form__input {
     padding: 10px;
     width: 100%;
     height: 40px;
     border: 1px solid #000;
     border-radius: 3px;
-
     appearance: none;
 }
 
