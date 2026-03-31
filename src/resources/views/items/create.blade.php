@@ -7,7 +7,7 @@
 @section('content')
 <div class="sell-page">
     <div>
-        <h2>商品の出品</h2>
+        <h2 class="sell-page__heading">商品の出品</h2>
     </div>
     <form class="sell-form" action="/sell" method="POST" enctype="multipart/form-data">
         @csrf
@@ -35,7 +35,7 @@
                 <h3>商品の詳細</h3>
             </div>
             <div class="sell-form__categories">
-                <span class="sell-form__label">カテゴリー</span>
+                <span class="sell-form__categories-label">カテゴリー</span>
                 @foreach ($categories as $category)
                     <label class="sell-form__category" for="{{ $category['id'] }}">
                         <input class="sell-form__category-input" type="checkbox" name="categories[]" value="{{ $category['id'] }}" id="{{ $category['id'] }}">
@@ -108,7 +108,7 @@
                 <label class="sell-form__label" for="price">販売価格</label>
                 <div class="price-field">
                     <span class="price-field__prefix">¥</span>
-                    <input class="sell-form__input" type="text" name="price" inputmode="numeric" id="price" value="{{ old('price') }}">
+                    <input class="price-field__input" type="text" name="price" inputmode="numeric" id="price" value="{{ old('price') }}">
                 </div>
             </div>
             <div class="form__error">
