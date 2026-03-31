@@ -13,7 +13,7 @@ class MypageController extends Controller
     public function index(Request $request)
     {
         $page = $request->query('page', 'sell');
-        $user = auth::user();
+        $user = Auth::user();
 
         $sellingItems = Item::where('user_id', $user->id)->get();
         $purchasedOrders = Order::with('item')->where('buyer_id', $user->id)->get();

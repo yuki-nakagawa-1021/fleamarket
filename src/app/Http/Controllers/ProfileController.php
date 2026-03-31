@@ -18,16 +18,11 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $oldPath = $user->profile_image_path;
-
-        $form = $request->all();
+        $form = $request->only(['user_name', 'postal_code', 'address', 'building']);
 
         if ($request->hasFile('profile_image')) {
             $form['profile_image_path'] = $request->file('profile_image')->store('profile_images', 'public');
         }
-
-        unset($form['_token']);
-        unset($form['profile_image']);
 
         $user->update($form);
 

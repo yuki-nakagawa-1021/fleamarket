@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage/index.css') }}">
 @endsection
 
 @section('content')
@@ -22,10 +22,10 @@
         </div>
     </div>
     <div class="mypage-products-tabs">
-        <a class="mypage-products-tabs__heading {{ $page === 'sell' ? 'is-active' : '' }}" href="/mypage?page=sell">
+        <a class="mypage-products-tabs__tab {{ $page === 'sell' ? 'is-active' : '' }}" href="/mypage?page=sell">
             出品した商品
         </a>
-        <a class="mypage-products-tabs__heading {{ $page === 'buy' ? 'is-active' : '' }}" href="/mypage?page=buy">
+        <a class="mypage-products-tabs__tab {{ $page === 'buy' ? 'is-active' : '' }}" href="/mypage?page=buy">
             購入した商品
         </a>
     </div>

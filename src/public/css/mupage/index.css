@@ -49,7 +49,7 @@
     border-bottom: 1px solid #000;
 }
 
-.mypage-products-tabs__heading {
+.mypage-products-tabs__tab {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
@@ -57,7 +57,7 @@
     color: inherit;
 }
 
-.mypage-products-tabs__heading.is-active {
+.mypage-products-tabs__tab.is-active {
     color: #ed5a15;
 }
 
