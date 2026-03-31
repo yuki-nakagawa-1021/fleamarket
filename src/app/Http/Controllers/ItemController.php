@@ -10,6 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        if ($request->tab) {
+            $tab = $request->tab;
+        }
+        else {
+            $tab = 'recommend';
+        }
+
+        $items = Item::with('order')->keywordSearch($keyword)->latest()->get();
+
+        return view('items.index', compact('items', 'keyword', 'tab'));
+    }
+
     public function index(Request $request)
     {
         $tab = $request->query('tab', 'recommend');

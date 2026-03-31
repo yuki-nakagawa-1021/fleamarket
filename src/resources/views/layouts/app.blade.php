@@ -17,7 +17,7 @@
             </a>
             <form class="search-form" action="/search" method="GET">
                 <div class="search-form__item">
-                    <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ old('keyword') }}">
+                    <input class="search-form__item-input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
                 </div>
             </form>
             <nav>

@@ -21,9 +21,9 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/search', [ItemController::class, 'search']);
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
-
 Route::post('/webhook/stripe', [PurchaseController::class, 'webhook']);
 
 Route::middleware('auth')->group(function () {
