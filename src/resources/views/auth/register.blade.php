@@ -13,11 +13,11 @@
         @csrf
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">ユーザー名</span>
+                <label for="name" class="form__label--item">ユーザー名</label>
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="name"  value="{{ old('name') }}"/>
+                    <input id="name" type="text" name="name"  value="{{ old('name') }}"/>
                 </div>
                 <div class="form__error">
                     @error('name')
@@ -28,11 +28,11 @@
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">メールアドレス</span>
+                <label for="email" class="form__label--item">メールアドレス</label>
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="email" name="email"  value="{{ old('email') }}" />
+                    <input id="email" type="email" name="email"  value="{{ old('email') }}" />
                 </div>
                 <div class="form__error">
                     @error('email')
@@ -43,11 +43,11 @@
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">パスワード</span>
+                <label for="password" class="form__label--item">パスワード</label>
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="password" name="password" />
+                    <input id="password" type="password" name="password" />
                 </div>
                 <div class="form__error">
                     @error('password')
@@ -58,11 +58,11 @@
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">確認用パスワード</span>
+                <label for="password_confirmation" class="form__label--item">確認用パスワード</label>
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="password" name="password_confirmation" />
+                    <input id="password_confirmation" type="password" name="password_confirmation" />
                 </div>
                 <div class="form__error">
                     @error('password_confirmation')
