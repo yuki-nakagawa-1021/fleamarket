@@ -106,6 +106,11 @@
                         <div class="item-comments__field">
                             <textarea class="item-comments__textarea" name="comment" rows="5" placeholder="コメントを入力してください">{{ old('comment') }}</textarea>
                         </div>
+                        <div class="form__error">
+                            @error('comment')
+                                {{ $message }}
+                            @enderror
+                        </div>
                         <div class="item-comments__actions">
                             <button class="item-comments__submit" type="submit">
                                 コメントを送信する

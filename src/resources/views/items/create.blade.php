@@ -122,20 +122,21 @@
 </div>
 
 <script>
-const itemImageInput=document.getElementById('image');
-const itemImagePreview=document.getElementById('itemImagePreview');
+const itemImageInput = document.getElementById('image');
+const itemImagePreview = document.getElementById('itemImagePreview');
 
-itemImageInput.addEventListener('change',function(event){
-    const file=event.target.files[0];
+itemImageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
 
-    if(!file){
+    if (!file) {
         return;
     }
 
-    const reader=new FileReader();
+    const reader = new FileReader();
 
-    reader.onload=function(e){
-        itemImagePreview.src=e.target.result;
+    reader.onload = function(e) {
+        itemImagePreview.src = e.target.result;
+        itemImagePreview.style.display = 'block';
     };
 
     reader.readAsDataURL(file);

@@ -43,6 +43,16 @@
     display: none;
 }
 
+.item-image__img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.item-image__img--active {
+    display: block;
+}
+
 .item-image__button {
     margin: 0 auto;
     padding: 5px 10px;
