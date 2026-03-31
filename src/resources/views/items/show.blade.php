@@ -27,18 +27,18 @@
                     @if($item->is_liked_by_user())
                         <a class="item-meta__like" href="/item/unlike/{{ $item['id'] }}">
                             <img class="item-meta__icon" src="{{ asset('img/ハートロゴ_ピンク.png') }}" alt="いいね済み">
-                            <span class="item-meta__count">{{ $item['likes']->count() }}</span>
+                            <span class="item-meta__count">{{ $item->likes_count }}</span>
                         </a>
                     @else
                         <a class="item-meta__like" href="/item/like/{{ $item->id }}">
                             <img class="item-meta__icon" src="{{ asset('img/ハートロゴ_デフォルト.png') }}" alt="いいね">
-                            <span class="item-meta__count">{{ $item['likes']->count() }}</span>
+                            <span class="item-meta__count">{{ $item->likes_count }}</span>
                         </a>
                     @endif
                 </div>
                 <div class="item-meta__comment">
                         <img class="item-meta__icon" src="{{ asset('img/ふきだしロゴ.png') }}" alt="コメント">
-                        <span class="item-meta__count">{{ $item['comments_count'] }}</span>
+                        <span class="item-meta__count">{{ $item->comments_count }}</span>
                 </div>
             </div>
             <div class="item-detail__purchase">
@@ -58,7 +58,11 @@
             <div class="item-info">
                 <div class="item-info__row">
                     <span class="item-info__label">カテゴリー</span>
-                    <span class="item-info__value--category">{{ $item['categories']->first()['name'] ?? '' }}</span>
+                    <div class="item-info__categories">
+                        @foreach ($item->categories as $category)
+                            <span class="item-info__value--category">{{ $category['name'] }}</span>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="item-info__row">
                     <span class="item-info__label">商品の状態</span>

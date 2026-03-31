@@ -29,7 +29,7 @@ class AddressRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return[
             'postal_code.required' => '郵便番号を入力してください。',

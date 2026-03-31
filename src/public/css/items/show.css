@@ -19,7 +19,6 @@
     object-fit: contain;
 }
 
-
 .item-detail__inner {
     margin: 0 auto;
     padding: 10px;
@@ -50,7 +49,6 @@
 .item-meta {
     margin: 10px;
     display: flex;
-
 }
 
 .item-meta__like {
@@ -133,11 +131,16 @@
     border: none;
     border-radius: 20px;
     background: #cfcbcb;
+    display: inline-block;
 }
 
 .item-info__value--condition {
     margin: 0;
     padding: 0 10px;
+}
+
+.item-comments {
+    margin-top: 10px;
 }
 
 .item-comments__list {
@@ -188,10 +191,6 @@
     font-size: 14px;
 }
 
-.item-comments {
-    margin-top: 10px;
-}
-
 .item-comments__subheading {
     margin: 0 0 10px;
     font-size: 14px;
@@ -233,4 +232,10 @@
     color: #fff;
     border-radius: 3px;
     background: #ed5a15;
+}
+
+.item-info__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }

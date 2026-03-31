@@ -7,10 +7,10 @@
 @section('content')
 <div class="item-page">
     <div class="item-tabs">
-        <a class="item-tabs__heading {{ $tab === 'recommend' ? 'is-active' : '' }}" href="/?tab=recommend&keyword={{ request('keyword') }}">
+        <a class="item-tabs__heading {{ $tab === 'recommend' ? 'is-active' : '' }}" href="/?tab=recommend&keyword={{ $keyword }}">
             おすすめ
         </a>
-        <a class="item-tabs__heading {{ $tab === 'mylist' ? 'is-active' : '' }}" href="/?tab=mylist&keyword={{ request('keyword') }}">
+        <a class="item-tabs__heading {{ $tab === 'mylist' ? 'is-active' : '' }}" href="/?tab=mylist&keyword={{ $keyword }}">
             マイリスト
         </a>
     </div>
