@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/purchase/create.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchases/create.css') }}">
 @endsection
 
 @section('content')
@@ -33,7 +33,9 @@
                             <option value="card" {{ old('payment_method') === 'card' ? 'selected' : '' }}>カード支払い</option>
                         </select>
                         @error('payment_method')
-                            <p class="form__error">{{ $message }}</p>
+                            <p class="form__error">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
                 </div>

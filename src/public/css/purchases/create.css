@@ -52,7 +52,6 @@
 .purchase-product__price {
     margin: 0;
     font-size: 24px;
-    font-weight: bold;
 }
 
 .purchase-section {
@@ -74,6 +73,7 @@
 
 .purchase-section__body {
     padding-left: 20px;
+    font-weight: 700;
 }
 
 .purchase-section__select {
@@ -101,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 20px;
+    padding: 30px 50px;
     border-bottom: 1px solid #000;
 }
 
@@ -128,4 +128,10 @@
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
 }
