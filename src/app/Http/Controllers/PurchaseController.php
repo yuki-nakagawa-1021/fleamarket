@@ -63,11 +63,55 @@ class PurchaseController extends Controller
                 'building' => $shippingAddress['building'] ?? '',
             ],
 
-            'success_url' => url('/'),
+            'success_url' => url('/purchase/success?session_id={CHECKOUT_SESSION_ID}'),
             'cancel_url' => url('/purchase/' . $item->id),
         ]);
 
         return redirect($checkout->url);
+    }
+
+    public function success(Request $request)
+    {
+        $sessionId = $request->query('session_id');
+
+        if (!$sessionId) {
+            return redirect('/');
+        }
+
+        $stripe = new StripeClient(config('services.stripe.secret'));
+        $session = $stripe->checkout->sessions->retrieve($sessionId);
+
+        if (($session->payment_status ?? null) !== 'paid') {
+            return redirect('/');
+        }
+
+        $itemId = $session->metadata->item_id ?? null;
+        $buyerId = $session->metadata->buyer_id ?? null;
+
+        if (!$itemId || !$buyerId) {
+            return redirect('/');
+        }
+
+        $item = Item::with('order')->find($itemId);
+
+        if (!$item) {
+            return redirect('/');
+        }
+
+        if (!$item->order) {
+            Order::create([
+                'item_id' => $itemId,
+                'buyer_id' => $buyerId,
+                'payment_method' => $session->metadata->payment_method ?? null,
+                'postal_code' => $session->metadata->postal_code ?? null,
+                'address' => $session->metadata->address ?? null,
+                'building' => $session->metadata->building ?? null,
+            ]);
+        }
+
+        session()->forget('purchase_address.' . $itemId);
+
+        return redirect('/');
     }
 
     public function editAddress($item_id)

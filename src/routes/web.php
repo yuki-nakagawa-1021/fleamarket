@@ -10,7 +10,6 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/item/like/{item_id}', [LikeController::class, 'like']);
         Route::get('/item/unlike/{item_id}', [LikeController::class, 'unlike']);
         Route::post('/item/comments/{item_id}', [CommentController::class, 'store']);
+        Route::get('/purchase/success', [PurchaseController::class, 'success']);
         Route::get('/purchase/{item_id}', [PurchaseController::class, 'create']);
         Route::post('/purchase/{item_id}', [PurchaseController::class, 'store']);
         Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
